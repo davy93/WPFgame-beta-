@@ -15,6 +15,8 @@ using System.Windows.Shapes;
 using Microsoft.Win32;
 using System.IO;
 
+using gameMenu.Debug;
+
 namespace gameMenu
 {
     /// <summary>
@@ -24,17 +26,21 @@ namespace gameMenu
     {
 
         static private MediaPlayer playsong = new MediaPlayer();
+
         public MainWindow()
         {
             InitializeComponent();
+            Logging.ShowDebugLog();
             playS();
 
+            Logging.WriteLog("Playing background video...");
             menubck.Source = new Uri(Directory.GetCurrentDirectory() + "\\menubck.mp4", UriKind.Absolute);
             menubck.Play();
 
         }
-        private  void playS()
+        private void playS()
         {
+            Logging.WriteLog("Playing Music...");
             Uri uri = new Uri(Directory.GetCurrentDirectory() + "\\menu.mp3", UriKind.Absolute);
             playsong.Open(uri);
             playsong.MediaEnded += Playsong_MediaEnded;
@@ -47,6 +53,7 @@ namespace gameMenu
         /// <param name="e"></param>
         private void Playsong_MediaEnded(object sender, EventArgs e)
         {
+            Logging.WriteLog("Looping music!");
             playsong.Play();
         }
         /// <summary>
@@ -56,24 +63,37 @@ namespace gameMenu
         /// <param name="e"></param>
         private void MediaElement_MediaEnded(object sender, RoutedEventArgs e)
         {
+            Logging.WriteLog("Looping background!");
             menubck.Source = new Uri(Directory.GetCurrentDirectory() + "\\menubck.mp4", UriKind.Absolute);
             menubck.Play();
         }
 
         private void newGame_btn_Click(object sender, RoutedEventArgs e)
         {
+            Logging.WriteLog("Hide MainMenu!");
             this.Hide();
             gameWindow gw = new gameWindow();
+            Logging.WriteLog("Game window opened!");
             gw.Show();
         }
 
         private void score_btn_Click(object sender, RoutedEventArgs e)
         {
-            throw new NotImplementedException();
+            Logging.WriteLog("Not yet implemented!", LogType.WARNING);
         }
 
         private void exit_btn_Click(object sender, RoutedEventArgs e)
         {
+            Logging.WriteLog("Exiting the app!");
+            string CurrentTime = DateTime.Now.ToString().Replace(':', '\'');
+            string path = Directory.GetCurrentDirectory().ToString() + "\\logs" + "\\" + CurrentTime + "_Log.txt";
+            StreamWriter streamWriter = new StreamWriter(path);
+            List<string> log = Logging.GetLog();
+            for (int i = 0; i < log.Count; i++)
+            {
+                streamWriter.WriteLine(log[i]);
+            }
+            streamWriter.Close();
             Environment.Exit(0);
         }
     }
