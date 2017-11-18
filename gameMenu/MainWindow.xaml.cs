@@ -30,6 +30,7 @@ namespace gameMenu
         public MainWindow()
         {
             InitializeComponent();
+            Logging.CreateLogDir();
             Logging.ShowDebugLog();
             playS();
 

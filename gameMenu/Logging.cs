@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -61,6 +62,16 @@ namespace gameMenu.Debug
             }
 
             return log;
+        }
+
+        public static void CreateLogDir()
+        {
+            if (!System.IO.Directory.Exists("logs"))
+            {
+                WriteLog("LogDirectory not exists... Creating");
+                DirectoryInfo di = Directory.CreateDirectory("logs");
+            }
+            else WriteLog("LogDirectory exists!");
         }
     }
     enum LogType
