@@ -24,11 +24,19 @@ namespace gameMenu.Debug
         {
             InitializeComponent();
         }
+        /// <summary>
+        /// Gets DebugLog Current Instanc
+        /// </summary>
+        /// <returns></returns>
         internal static DebugWindow GetInstance()
         {
            if(CreateDebugInstance())  return currentInstance;
-           return null;
+           return currentInstance;
         }
+        /// <summary>
+        /// Creates new instance (if it's true), if it's exists return false
+        /// </summary>
+        /// <returns></returns>
         internal static bool CreateDebugInstance()
         {
             if(currentInstance == null)
