@@ -86,9 +86,10 @@ namespace gameMenu
         private void exit_btn_Click(object sender, RoutedEventArgs e)
         {
             Logging.WriteLog("Exiting the app!");
-            string CurrentTime = DateTime.Now.ToString().Replace(':', '\'');
-            string path = Directory.GetCurrentDirectory().ToString() + "\\logs" + "\\" + CurrentTime + "_Log.txt";
-            StreamWriter streamWriter = new StreamWriter(path);
+            string CurrentTime = DateTime.Now.ToString().Replace(':', '-').Replace('/','-');
+            string path = Directory.GetCurrentDirectory() + "\\logs" + "\\" ;
+            string file = CurrentTime + "_Log.txt";
+            StreamWriter streamWriter = new StreamWriter(path+file);
             List<string> log = Logging.GetLog();
             for (int i = 0; i < log.Count; i++)
             {
@@ -96,6 +97,16 @@ namespace gameMenu
             }
             streamWriter.Close();
             Environment.Exit(0);
+        }
+
+        private void cogwheel_png_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            Logging.WriteLog("Settings: Not Yet Implemented", LogType.WARNING);
+        }
+
+        private void help_png_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            Logging.WriteLog("Help: Not Yet Implemented", LogType.WARNING);
         }
     }
 }

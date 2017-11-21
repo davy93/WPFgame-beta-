@@ -34,6 +34,8 @@
                 <ImageBrush ImageSource="Exit.png"/>
             </Button.Background>
         </Button>
+        <Image x:Name="cogwheel_png" Height="44" Canvas.Left="10" Source="cogwheel.png" Stretch="Fill" Canvas.Top="10" Width="44" MouseDown="cogwheel_png_MouseDown"/>
+        <Image x:Name="help_png" Height="44" Canvas.Left="59" Source="help.png" Stretch="Fill" Canvas.Top="10" Width="44" MouseDown="help_png_MouseDown"/>
 
     </Canvas>
 </Window>

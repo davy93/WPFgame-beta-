@@ -121,5 +121,11 @@
   <ItemGroup>
     <Resource Include="Score.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="cogwheel.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="help.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
