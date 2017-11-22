@@ -24,6 +24,9 @@ namespace gameMenu
     /// </summary>
     public partial class MainWindow : Window
     {
+        #region Settings Params
+        static bool DebugMode = SettingsListener.DebugMode();
+        #endregion
 
         static private MediaPlayer playsong = new MediaPlayer();
 
@@ -31,7 +34,7 @@ namespace gameMenu
         {
             InitializeComponent();
             Logging.CreateLogDir();
-            Logging.ShowDebugLog();
+            if(DebugMode) Logging.ShowDebugLog();
             playS();
 
             Logging.WriteLog("Playing background video...");
@@ -101,7 +104,8 @@ namespace gameMenu
 
         private void cogwheel_png_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            Logging.WriteLog("Settings: Not Yet Implemented", LogType.WARNING);
+            Logging.WriteLog("Showing settings...");
+            SettingsListener.ShowSettings();
         }
 
         private void help_png_MouseDown(object sender, MouseButtonEventArgs e)

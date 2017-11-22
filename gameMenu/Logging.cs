@@ -101,6 +101,13 @@ namespace gameMenu.Debug
             }
             else WriteLog("LogDirectory exists!");
         }
+        /// <summary>
+        /// Hides Debug Log
+        /// </summary>
+        public static void HideDebugLog()
+        {
+            debugWindowInstance.Hide();
+        }
     }
     /// <summary>
     /// LogType enumator, see DOCS for more info
